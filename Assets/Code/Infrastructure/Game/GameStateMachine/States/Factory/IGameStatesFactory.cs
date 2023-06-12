@@ -1,5 +1,4 @@
 ﻿using EnotoButerbrodo.StateMachine;
-using UnityEngine.TextCore.LowLevel;
 
 namespace Code.Infrastructure
 {
@@ -9,6 +8,6 @@ namespace Code.Infrastructure
         public IPayloadedState<LoadSceneArgs> GetLoadSceneState(GameStateMachine context);
 
         public IState GetMainMenuState(GameStateMachine context);
-        public IState GetGalleryMenuState(GameStateMachine context);
+        public IState GetGalleryState(GameStateMachine context);
     }
 }

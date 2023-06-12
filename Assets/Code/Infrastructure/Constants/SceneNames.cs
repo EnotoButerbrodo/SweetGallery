@@ -4,6 +4,6 @@
     {
         public const string InitialScene = "InitialScene";
         public const string MainMenuScene = "MainMenuScene";
-        public const string GalleryMenuScene = "GalleryMenuScene";
+        public const string GalleryScene = "GalleryScene";
     }
 }

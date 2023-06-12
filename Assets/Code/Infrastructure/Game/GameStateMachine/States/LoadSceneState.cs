@@ -13,20 +13,28 @@ namespace Code.Infrastructure
         private ICoroutineRunner _coroutineRunner;
         private IUIFactory _uiFactory;
 
+        private LoadingScreen _loadingScreen;
+
         public LoadSceneState(ICoroutineRunner coroutineRunner
             , IUIFactory uiFactory)
         {
             _coroutineRunner = coroutineRunner;
             _uiFactory = uiFactory;
+            
+            _loadingScreen = _uiFactory.GetLoadingScreen();
         }
 
         public void Enter(LoadSceneArgs payload)
         {
+            _loadingScreen.Show();
+            _loadingScreen.SetProgressPercent(0);
+            
             _coroutineRunner.StartCoroutine(LoadScene(payload));
         }
 
         public void Exit()
         {
+            _loadingScreen.Hide();
         }
 
         private IEnumerator LoadScene(LoadSceneArgs loadSceneArgs)
@@ -36,20 +44,15 @@ namespace Code.Infrastructure
                 loadSceneArgs.OnLoadCallback?.Invoke();
                 yield break;
             }
-            
-            LoadingScreen loadingScreen = _uiFactory.GetLoadingScreen();
-            loadingScreen.Show();
-            
+
             AsyncOperation loadOperation = SceneManager.LoadSceneAsync(loadSceneArgs.SceneName);
 
             while (!loadOperation.isDone)
             {
-                loadingScreen.SetProgressPercent(loadOperation.progress);
+                _loadingScreen.SetProgressPercent(loadOperation.progress);
                 yield return null;
             }
-            
-            loadingScreen.Hide();
-            
+
             loadSceneArgs.OnLoadCallback?.Invoke();
         }
         

@@ -24,11 +24,9 @@ namespace Code.Infrastructure
         private void LoadMainMenuScene() =>
             _context.Enter<LoadSceneState, LoadSceneArgs>(
                 new LoadSceneArgs(SceneNames.MainMenuScene));
-        
 
         public void Exit()
         {
-            
         }
     }
 }

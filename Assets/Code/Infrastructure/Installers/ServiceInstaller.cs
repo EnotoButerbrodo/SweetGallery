@@ -15,20 +15,6 @@ namespace Code.Infrastructure.Installers
             BindUIFactory();
         }
 
-        private void BindUIFactory()
-        {
-            BeheviourUIFactory uiFactory = Container
-                .InstantiatePrefabForComponent<BeheviourUIFactory>(_uiFactory);
-            
-            Container
-                .Bind<IUIFactory>()
-                .To<BeheviourUIFactory>()
-                .FromInstance(_uiFactory)
-                .AsSingle();
-            
-            DontDestroyOnLoad(uiFactory);
-        }
-
         private void BindCoroutineRunner()
         {
             CoroutineRunner coroutineRunner = Container
@@ -41,6 +27,20 @@ namespace Code.Infrastructure.Installers
                 .AsSingle();
             
             DontDestroyOnLoad(coroutineRunner);
+        }
+
+        private void BindUIFactory()
+        {
+            BeheviourUIFactory uiFactory = Container
+                .InstantiatePrefabForComponent<BeheviourUIFactory>(_uiFactory);
+            
+            Container
+                .Bind<IUIFactory>()
+                .To<BeheviourUIFactory>()
+                .FromInstance(_uiFactory)
+                .AsSingle();
+            
+            DontDestroyOnLoad(uiFactory);
         }
     }
 }

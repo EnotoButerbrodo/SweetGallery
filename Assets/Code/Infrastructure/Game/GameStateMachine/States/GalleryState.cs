@@ -3,11 +3,11 @@ using UnityEngine.SceneManagement;
 
 namespace Code.Infrastructure
 {
-    public class GalleryMenuState : IState
+    public class GalleryState : IState
     {
         private readonly GameStateMachine _context;
 
-        public GalleryMenuState(GameStateMachine context)
+        public GalleryState(GameStateMachine context)
         {
             _context = context;
         }
@@ -24,10 +24,10 @@ namespace Code.Infrastructure
         }
         
         private bool InGalleryScene() 
-            => SceneManager.GetActiveScene().name == SceneNames.GalleryMenuScene;
+            => SceneManager.GetActiveScene().name == SceneNames.GalleryScene;
 
         private void LoadGalleryScene() =>
             _context.Enter<LoadSceneState, LoadSceneArgs>(
-                new LoadSceneArgs(SceneNames.GalleryMenuScene));
+                new LoadSceneArgs(SceneNames.GalleryScene));
     }
 }

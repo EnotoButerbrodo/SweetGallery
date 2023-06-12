@@ -25,7 +25,7 @@ namespace Code.UI.Menu
 
         private void OnGalleryButton()
         {
-            _game.StateMachine.Enter<GalleryMenuState>();
+            _game.StateMachine.Enter<GalleryState>();
         }
     }
 }

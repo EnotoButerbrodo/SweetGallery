@@ -26,7 +26,7 @@ namespace Code.Infrastructure
         public IState GetMainMenuState(GameStateMachine context)
             => new MainMenuState(context);
 
-        public IState GetGalleryMenuState(GameStateMachine context)
-            => new GalleryMenuState(context);
+        public IState GetGalleryState(GameStateMachine context)
+            => new GalleryState(context);
     }
 }

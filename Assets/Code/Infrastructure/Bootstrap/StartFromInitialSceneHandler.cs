@@ -12,10 +12,10 @@ namespace Code.Infrastructure
                 LoadInitialScene();
         }
 
-        private static void LoadInitialScene() 
-            => SceneManager.LoadScene(SceneNames.InitialScene);
-
         private bool IsGameInitiated() 
             => FindObjectOfType<GameBootstrap>() != null;
+
+        private static void LoadInitialScene() 
+            => SceneManager.LoadScene(SceneNames.InitialScene);
     }
 }
