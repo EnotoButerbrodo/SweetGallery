@@ -671,7 +671,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4381288988367956860, guid: eadfedb743a05a54fb42f43e44780b32, type: 3}
       propertyPath: m_Name
-      value: UI
+      value: LoadinsScreenCanvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eadfedb743a05a54fb42f43e44780b32, type: 3}

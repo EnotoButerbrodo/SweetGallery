@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7781710042029799804}
   - component: {fileID: 7082935382864950979}
   m_Layer: 0
-  m_Name: GameRunner
+  m_Name: StartFromInitialSceneHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

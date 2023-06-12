@@ -15,11 +15,7 @@ namespace Code.Infrastructure
         private static void LoadInitialScene() 
             => SceneManager.LoadScene(SceneNames.InitialScene);
 
-        private bool IsGameInitiated()
-        {
-            var bootstrap = FindObjectOfType<GameBootstrap>();
-
-            return bootstrap != null;
-        }
+        private bool IsGameInitiated() 
+            => FindObjectOfType<GameBootstrap>() != null;
     }
 }
