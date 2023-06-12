@@ -1,4 +1,4 @@
-﻿namespace Code.Infrastructure.Installers
+﻿namespace Code.Infrastructure
 {
     public class Game
     {

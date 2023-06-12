@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 namespace Code.Infrastructure
 {
+
     public class LoadSceneState : IPayloadedState<LoadSceneArgs>
     {
         private ICoroutineRunner _coroutineRunner;
@@ -30,6 +31,12 @@ namespace Code.Infrastructure
 
         private IEnumerator LoadScene(LoadSceneArgs loadSceneArgs)
         {
+            if (SceneManager.GetActiveScene().name == loadSceneArgs.SceneName)
+            {
+                loadSceneArgs.OnLoadCallback?.Invoke();
+                yield break;
+            }
+            
             LoadingScreen loadingScreen = _uiFactory.GetLoadingScreen();
             loadingScreen.Show();
             
@@ -42,8 +49,9 @@ namespace Code.Infrastructure
             }
             
             loadingScreen.Hide();
+            
             loadSceneArgs.OnLoadCallback?.Invoke();
-
         }
+        
     }
 }
