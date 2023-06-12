@@ -1,5 +1,7 @@
 ﻿using EnotoButerbrodo.StateMachine;
+using UnityEngine;
 using UnityEngine.SceneManagement;
+using Screen = UnityEngine.Device.Screen;
 
 namespace Code.Infrastructure
 {
@@ -14,7 +16,13 @@ namespace Code.Infrastructure
 
         public void Enter()
         {
+            SetPortairOrientation();
             LoadMainMenu();
+        }
+
+        private void SetPortairOrientation()
+        {
+            Screen.orientation = ScreenOrientation.Portrait;
         }
 
         private void LoadMainMenu()
