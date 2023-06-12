@@ -1,11 +1,10 @@
 {
   "dependencies": {
     "com.enotobuterbrodo.statemachine": {
-      "version": "https://github.com/EnotoButerbrodo/StateMachine.git",
+      "version": "file:S:/Unity/MyPackages/StateMachine",
       "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "cb7cae111d250f51cf11cd613b25e72b00b43e4f"
+      "source": "local",
+      "dependencies": {}
     },
     "com.unity.2d.animation": {
       "version": "7.0.6",
