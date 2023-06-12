@@ -8,7 +8,7 @@ namespace Code.Services.UIService
     public class LoadingScreen : Screen
     {
         [SerializeField] private TextMeshProUGUI _loadPercentText;
-        [SerializeField] private IProgressBar _loadProgressBar;
+        [SerializeField] private SimpleProgressBar _loadProgressBar;
         
         public void SetProgressPercent(float percent)
         {

@@ -1,4 +1,5 @@
 ﻿using Code.Services;
+using Code.Services.UIService;
 using EnotoButerbrodo.StateMachine;
 using Zenject;
 
@@ -18,7 +19,8 @@ namespace Code.Infrastructure
 
 
         public IPayloadedState<LoadSceneArgs> GetLoadSceneState(GameStateMachine context)
-            => new LoadSceneState(_container.Resolve<ICoroutineRunner>());
+            => new LoadSceneState(_container.Resolve<ICoroutineRunner>()
+                , _container.Resolve<IUIFactory>());
 
         public IState GetMainMenuState(GameStateMachine context)
             => new MainMenuState(context);
