@@ -9,5 +9,6 @@ namespace Code.Infrastructure
         public IPayloadedState<LoadSceneArgs> GetLoadSceneState(GameStateMachine context);
 
         public IState GetMainMenuState(GameStateMachine context);
+        public IState GetGalleryMenuState(GameStateMachine context);
     }
 }

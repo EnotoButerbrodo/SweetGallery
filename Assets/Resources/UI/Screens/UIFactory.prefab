@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4381288988367956802}
   - component: {fileID: 4381288988367956803}
   m_Layer: 5
-  m_Name: UI
+  m_Name: UIFactory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -122,6 +122,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4381288988367956800}
     m_Modifications:
+    - target: {fileID: 9015038752154956495, guid: 0c4e11235d0928a4a96209132e8569d3, type: 3}
+      propertyPath: _currentValue
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 9015038752379435124, guid: 0c4e11235d0928a4a96209132e8569d3, type: 3}
+      propertyPath: m_Alpha
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9015038752379435130, guid: 0c4e11235d0928a4a96209132e8569d3, type: 3}
       propertyPath: m_Name
       value: LoadScreen
@@ -209,6 +217,14 @@ PrefabInstance:
     - target: {fileID: 9015038752379435131, guid: 0c4e11235d0928a4a96209132e8569d3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9015038752553316881, guid: 0c4e11235d0928a4a96209132e8569d3, type: 3}
+      propertyPath: m_FillAmount
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 9015038752997724912, guid: 0c4e11235d0928a4a96209132e8569d3, type: 3}
+      propertyPath: m_text
+      value: 0,9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c4e11235d0928a4a96209132e8569d3, type: 3}

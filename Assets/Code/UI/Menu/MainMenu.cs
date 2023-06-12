@@ -19,12 +19,13 @@ namespace Code.UI.Menu
 
         private void OnDisable()
         {
+            _galleryButton.onClick.RemoveListener(OnGalleryButton);
             
         }
 
         private void OnGalleryButton()
         {
-            Debug.Log("Gallery");
+            _game.StateMachine.Enter<GalleryMenuState>();
         }
     }
 }

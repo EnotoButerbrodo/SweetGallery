@@ -1,6 +1,4 @@
-﻿using System;
-using Code.Services;
-using UnityEngine;
+﻿using UnityEngine;
 using Zenject;
 
 namespace Code.Infrastructure
@@ -9,7 +7,7 @@ namespace Code.Infrastructure
     {
         [Inject] private Game _game;
 
-        private void Awake()
+        private void Start()
         {
             _game.StateMachine.Enter<GameInitialState>();
             DontDestroyOnLoad(this);

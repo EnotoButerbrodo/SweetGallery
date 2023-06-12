@@ -7,7 +7,6 @@ namespace Code.Infrastructure.Installers
 {
     public class ServiceInstaller : MonoInstaller
     {
-        [SerializeField] private CoroutineRunner _coroutineRunner;
         [SerializeField] private BeheviourUIFactory _uiFactory;
         
         public override void InstallBindings()
@@ -18,24 +17,30 @@ namespace Code.Infrastructure.Installers
 
         private void BindUIFactory()
         {
+            BeheviourUIFactory uiFactory = Container
+                .InstantiatePrefabForComponent<BeheviourUIFactory>(_uiFactory);
+            
             Container
                 .Bind<IUIFactory>()
                 .To<BeheviourUIFactory>()
                 .FromInstance(_uiFactory)
                 .AsSingle();
             
-            DontDestroyOnLoad(_uiFactory.gameObject);
+            DontDestroyOnLoad(uiFactory);
         }
 
         private void BindCoroutineRunner()
         {
+            CoroutineRunner coroutineRunner = Container
+                .InstantiateComponentOnNewGameObject<CoroutineRunner>();
+            
             Container
                 .Bind<ICoroutineRunner>()
                 .To<CoroutineRunner>()
-                .FromInstance(_coroutineRunner)
+                .FromInstance(coroutineRunner)
                 .AsSingle();
             
-            DontDestroyOnLoad(_coroutineRunner);
+            DontDestroyOnLoad(coroutineRunner);
         }
     }
 }

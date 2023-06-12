@@ -14,33 +14,13 @@ namespace Code.Infrastructure
 
         public void Enter()
         {
-            CheckStartFromInitialScene();
             LoadMainMenu();
         }
 
-        private void CheckStartFromInitialScene()
-        {
-            if(SceneManager.GetActiveScene().name == SceneNames.InitialScene)
-                return;
-            
-            _context.Enter<LoadSceneState, LoadSceneArgs>(
-                new LoadSceneArgs(sceneName: SceneNames.InitialScene
-                                  , onLoadCallback: EnterInitialState));
-        }
-
-        private void EnterInitialState() 
-            => _context.Enter<GameInitialState>();
-
         private void LoadMainMenu()
         {
-            _context.Enter<LoadSceneState, LoadSceneArgs>(
-                new LoadSceneArgs(SceneNames.MainMenuScene
-                    , onLoadCallback: EnterMainMenuState));
+            _context.Enter<MainMenuState>();
         }
-
-        private void EnterMainMenuState()
-            => _context.Enter<MainMenuState>();
-        
 
         public void Exit()
         {
