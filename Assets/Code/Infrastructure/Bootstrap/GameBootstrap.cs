@@ -13,10 +13,5 @@ namespace Code.Infrastructure.Installers
         {
             _game.StateMachine.Enter<GameInitialState>();
         }
-
-        private void Update()
-        {
-            _game.StateMachine.UpdateStates();
-        }
     }
 }
