@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _canvasGroup: {fileID: 9015038752379435124}
-  _hideInAwake: 1
+  _hideInAwake: 0
   _loadPercentText: {fileID: 9015038752997724912}
   _loadProgressBar: {fileID: 9015038752154956495}
 --- !u!225 &9015038752379435124

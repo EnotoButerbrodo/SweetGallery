@@ -7,34 +7,27 @@ using UnityEngine.SceneManagement;
 
 namespace Code.Infrastructure
 {
-
     public class LoadSceneState : IPayloadedState<LoadSceneArgs>
     {
         private ICoroutineRunner _coroutineRunner;
         private IUIFactory _uiFactory;
-
-        private LoadingScreen _loadingScreen;
+        
 
         public LoadSceneState(ICoroutineRunner coroutineRunner
             , IUIFactory uiFactory)
         {
             _coroutineRunner = coroutineRunner;
             _uiFactory = uiFactory;
-            
-            _loadingScreen = _uiFactory.GetLoadingScreen();
         }
 
         public void Enter(LoadSceneArgs payload)
         {
-            _loadingScreen.Show();
-            _loadingScreen.SetProgressPercent(0);
-            
             _coroutineRunner.StartCoroutine(LoadScene(payload));
         }
 
         public void Exit()
         {
-            _loadingScreen.Hide();
+            Debug.Log("LoadingExit");
         }
 
         private IEnumerator LoadScene(LoadSceneArgs loadSceneArgs)
@@ -44,15 +37,30 @@ namespace Code.Infrastructure
                 loadSceneArgs.OnLoadCallback?.Invoke();
                 yield break;
             }
+            
+            Debug.Log("StartLoading " + loadSceneArgs.SceneName);
 
+            var loadingScreen = _uiFactory.GetLoadingScreen();
+            loadingScreen.Show();
+            
             AsyncOperation loadOperation = SceneManager.LoadSceneAsync(loadSceneArgs.SceneName);
-
-            while (!loadOperation.isDone)
+            loadOperation.allowSceneActivation = false;
+            
+            while (loadOperation.progress < 0.9f)
             {
-                _loadingScreen.SetProgressPercent(loadOperation.progress);
+                loadingScreen.SetProgressPercent(loadOperation.progress);
                 yield return null;
             }
 
+            yield return new WaitForSeconds(2f);
+            
+
+            _uiFactory.GetLoadingScreen().Hide();
+            Debug.Log("StopLoading2 " + loadSceneArgs.SceneName);
+            
+            loadingScreen.Hide();
+            loadOperation.allowSceneActivation = true;
+            
             loadSceneArgs.OnLoadCallback?.Invoke();
         }
         
