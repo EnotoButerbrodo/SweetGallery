@@ -15,16 +15,14 @@ namespace Code.Infrastructure.Installers
         
         private void BindUIFactory()
         {
-            BeheviourUIFactory uiFactory = Instantiate(_uiFactory);
+            BeheviourUIFactory uiFactory = Container
+                .InstantiatePrefabForComponent<BeheviourUIFactory>(_uiFactory);
             
             Container
                 .Bind<IUIFactory>()
                 .To<BeheviourUIFactory>()
-                .FromInstance(_uiFactory)
+                .FromInstance(uiFactory)
                 .AsSingle();
-            
-            DontDestroyOnLoad(uiFactory);
-            
         }
     }
 }

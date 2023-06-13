@@ -1,7 +1,6 @@
 ﻿using Code.UI.UIElements;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace Code.Services.UIService
 {
@@ -18,7 +17,7 @@ namespace Code.Services.UIService
 
         private void SetProgressText(float percent)
         {
-            _loadPercentText.text = System.MathF.Round(percent, 1).ToString();
+            _loadPercentText.text = Mathf.RoundToInt(percent * 100).ToString();
         }
 
         private void SetProgressBarFill(float percent)
