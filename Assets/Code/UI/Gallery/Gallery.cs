@@ -13,7 +13,8 @@ namespace Code.UI
         [Inject] private ImageDownloader _imageDownloader;
 
         private List<IImageHolder> _holders = new List<IImageHolder>();
-        
+
+        private int _currentImage = 1;
         private IImageHolder _selectedHolder;
         
         private void Awake()
@@ -23,21 +24,33 @@ namespace Code.UI
 
         private void CreateStartHolders()
         {
-            for (int i = 0; i < _startImagesCount; i++)
+            for (int i = 1; i < _startImagesCount + 1; i++)
             {
-                CreateImageHolder();
+                CreateImageHolder(_currentImage);
+                _currentImage++;
             }
         }
 
-        private void CreateImageHolder()
+        private void CreateImageHolder(int imageNumber)
         {
             var newHolder = _factory.Get();
             newHolder.SetParent(_content);
             newHolder.Selected += UpdateSelectedHolder;
-            
-            _imageDownloader.GetNextImage((sprite) => newHolder.SetImage(sprite));
             _holders.Add(newHolder);
+
+            _imageDownloader.TryGetImage(imageNumber, FitImageHolder);
         }
+
+        private void FitImageHolder(bool isImageAvailable
+            , int imageNumber, Sprite image)
+        {
+            if(isImageAvailable == false)
+                return;
+            
+            _holders[imageNumber - 1].SetImage(image);
+            
+        }
+        
 
         private void UpdateSelectedHolder(IImageHolder holder)
         {

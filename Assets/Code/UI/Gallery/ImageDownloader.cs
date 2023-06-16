@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Net;
 using Code.Services;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -8,9 +9,8 @@ namespace Code.UI
 {
     public class ImageDownloader
     {
-        private int _currentImage = 1;
-        private IImageURLBuilder _urlBuilder;
-        private ICoroutineRunner _coroutineRunner;
+        private readonly IImageURLBuilder _urlBuilder;
+        private readonly ICoroutineRunner _coroutineRunner;
 
         public ImageDownloader(ICoroutineRunner coroutineRunner)
         {
@@ -18,15 +18,16 @@ namespace Code.UI
             _urlBuilder = new ImageURLBuilder();
         }
         
-        public void GetNextImage(Action<Sprite> resultCallback)
+        
+        public void TryGetImage(int imageNumber, ImageDownloadResult resultCallback)
         {
-            _coroutineRunner.StartCoroutine(GetTexture(resultCallback));
+            _coroutineRunner.StartCoroutine(GetTexture(imageNumber, resultCallback));
         }
         
 
-        private IEnumerator GetTexture(Action<Sprite> resultCallback)
+        private IEnumerator GetTexture(int imageNumber, ImageDownloadResult resultCallback)
         {
-            string url = _urlBuilder.GetURLForImageNumber(_currentImage++);
+            string url = _urlBuilder.GetURLForImageNumber(imageNumber);
 
             using (UnityWebRequest getTextureRequest = UnityWebRequestTexture.GetTexture(url))
             {
@@ -34,7 +35,7 @@ namespace Code.UI
 
                 if (getTextureRequest.result != UnityWebRequest.Result.Success)
                 {
-                    resultCallback.Invoke(null);
+                    resultCallback.Invoke(false, imageNumber, null);
                     yield break;
                 }
 
@@ -45,8 +46,8 @@ namespace Code.UI
                 Sprite sprite = Sprite.Create(texture
                     , rect: new Rect(Vector2.zero, spriteSize)
                     , pivot: new Vector2(0.5f, 0.5f));
-
-                resultCallback.Invoke(sprite);
+                
+                resultCallback.Invoke(true, imageNumber, sprite);
             }
         } 
 
