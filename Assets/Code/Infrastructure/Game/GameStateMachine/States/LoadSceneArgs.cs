@@ -5,12 +5,16 @@ namespace Code.Infrastructure
     public class LoadSceneArgs
     {
         public readonly string SceneName;
-        public readonly Action OnLoadCallback;
+        public readonly Action OnSceneChanged;
+        public readonly Action OnLoadComplete;
         
-        public LoadSceneArgs(string sceneName, Action onLoadCallback = null)
+        public LoadSceneArgs(string sceneName
+            , Action onSceneChanged = null
+            , Action onLoadComplete = null)
         {
             SceneName = sceneName;
-            OnLoadCallback = onLoadCallback;
+            OnSceneChanged = onSceneChanged;
+            OnLoadComplete = onLoadComplete;
         }
     }
 }

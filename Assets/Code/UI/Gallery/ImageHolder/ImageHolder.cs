@@ -25,7 +25,7 @@ namespace Code.UI
 
         public void SetParent(Transform parent)
         {
-            transform.SetParent(parent);
+            transform.SetParent(parent, false);
         }
 
         private void OnEnable()

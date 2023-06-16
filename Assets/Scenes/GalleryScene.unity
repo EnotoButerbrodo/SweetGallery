@@ -487,6 +487,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5453944696338040941, guid: dabc58a79e7c55041a24dd994baecfb0, type: 3}
+      propertyPath: _startImagesCount
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6106412471053149948, guid: dabc58a79e7c55041a24dd994baecfb0, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -557,7 +561,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6106412471588867713, guid: dabc58a79e7c55041a24dd994baecfb0, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 455.61777
+      value: 573.53827
       objectReference: {fileID: 0}
     - target: {fileID: 6106412471588867713, guid: dabc58a79e7c55041a24dd994baecfb0, type: 3}
       propertyPath: m_AnchoredPosition.y

@@ -14,7 +14,7 @@ namespace Code.Infrastructure
 
         private readonly LoadingScreen _loadingScreen;
 
-        private const float FakeLoadingTime = 1f;
+        private const float FakeLoadingTime = 2f;
         private const float PostLoadDelay = 0.25f;
 
         public LoadSceneState(ICoroutineRunner coroutineRunner
@@ -39,7 +39,7 @@ namespace Code.Infrastructure
         {
             if (SceneManager.GetActiveScene().name == loadSceneArgs.SceneName)
             {
-                loadSceneArgs.OnLoadCallback?.Invoke();
+                loadSceneArgs.OnSceneChanged?.Invoke();
                 yield break; 
             }
             
@@ -52,21 +52,22 @@ namespace Code.Infrastructure
             for (float time = 0; time <= FakeLoadingTime; time += Time.deltaTime)
             {
                 _loadingScreen.SetProgressPercent(time/FakeLoadingTime);
+                
+                if (loadOperation.progress >= 0.89)
+                {
+                    loadOperation.allowSceneActivation = true;
+                    loadSceneArgs.OnSceneChanged?.Invoke();
+                }
+                
                 yield return null;
             }
-
-            while (loadOperation.isDone)
-            {
-                yield return null;
-            }
-
-            loadOperation.allowSceneActivation = true;
-            
+            _loadingScreen.SetProgressPercent(1);
             yield return new WaitForSeconds(PostLoadDelay);
-            
+
             _loadingScreen.Hide();
+            loadSceneArgs.OnLoadComplete?.Invoke();
             
-            loadSceneArgs.OnLoadCallback?.Invoke();
+            
         }
         
     }
