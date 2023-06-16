@@ -15,7 +15,23 @@ namespace Code.UI
         private void Awake()
         {
             CreateStartHolders();
+            _gallery.OnScroll += OnGalleryScrolled;
         }
+
+        private void OnGalleryScrolled(Vector2 scrollValue)
+        {
+            if(_gallery.LastImageIndex > 64)
+                return;
+            
+            if (scrollValue.y <= 0.25f)
+            {
+                LoadImage();
+                LoadImage();
+                LoadImage();
+                LoadImage();
+            }
+        }
+
 
         private void CreateStartHolders()
         {

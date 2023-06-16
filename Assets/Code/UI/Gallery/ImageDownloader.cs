@@ -24,7 +24,6 @@ namespace Code.UI
             _coroutineRunner.StartCoroutine(GetTexture(imageNumber, resultCallback));
         }
         
-
         private IEnumerator GetTexture(int imageNumber, ImageDownloadResult resultCallback)
         {
             string url = _urlBuilder.GetURLForImageNumber(imageNumber);

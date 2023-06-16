@@ -14,7 +14,7 @@ namespace Code.Infrastructure
 
         private readonly LoadingScreen _loadingScreen;
 
-        private const float FakeLoadingTime = 2f;
+        private const float FakeLoadingTime = 2.5f;
         private const float PostLoadDelay = 0.25f;
 
         public LoadSceneState(ICoroutineRunner coroutineRunner
