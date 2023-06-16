@@ -4,9 +4,9 @@ using Screen = UnityEngine.Device.Screen;
 
 namespace Code.Infrastructure
 {
-    public class GameInitialState : IState
+    public sealed class GameInitialState : IState
     {
-        private GameStateMachine _context;
+        private readonly GameStateMachine _context;
 
         public GameInitialState(GameStateMachine context)
         {

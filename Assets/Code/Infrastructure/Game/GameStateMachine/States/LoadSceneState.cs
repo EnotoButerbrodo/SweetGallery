@@ -7,12 +7,15 @@ using UnityEngine.SceneManagement;
 
 namespace Code.Infrastructure
 {
-    public class LoadSceneState : IPayloadedState<LoadSceneArgs>
+    public sealed class LoadSceneState : IPayloadedState<LoadSceneArgs>
     {
-        private ICoroutineRunner _coroutineRunner;
-        private IUIFactory _uiFactory;
+        private readonly ICoroutineRunner _coroutineRunner;
+        private readonly IUIFactory _uiFactory;
 
-        private LoadingScreen _loadingScreen;
+        private readonly LoadingScreen _loadingScreen;
+
+        private const float FakeLoadingTime = 1f;
+        private const float PostLoadDelay = 0.25f;
 
         public LoadSceneState(ICoroutineRunner coroutineRunner
             , IUIFactory uiFactory)
@@ -29,9 +32,8 @@ namespace Code.Infrastructure
 
         public void Exit()
         {
-   
-            Debug.Log("LoadingExitAndHide");
         }
+        
 
         private IEnumerator LoadScene(LoadSceneArgs loadSceneArgs)
         {
@@ -46,9 +48,10 @@ namespace Code.Infrastructure
             
             AsyncOperation loadOperation = SceneManager.LoadSceneAsync(loadSceneArgs.SceneName);
             loadOperation.allowSceneActivation = false;
-            for (float time = 0; time <= 2; time += Time.deltaTime)
+            
+            for (float time = 0; time <= FakeLoadingTime; time += Time.deltaTime)
             {
-                _loadingScreen.SetProgressPercent(time/2);
+                _loadingScreen.SetProgressPercent(time/FakeLoadingTime);
                 yield return null;
             }
 
@@ -59,15 +62,11 @@ namespace Code.Infrastructure
 
             loadOperation.allowSceneActivation = true;
             
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(PostLoadDelay);
             
             _loadingScreen.Hide();
             
             loadSceneArgs.OnLoadCallback?.Invoke();
-
-
-
-
         }
         
     }

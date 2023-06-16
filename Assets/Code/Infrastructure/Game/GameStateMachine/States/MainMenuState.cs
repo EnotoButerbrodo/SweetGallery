@@ -3,9 +3,9 @@ using UnityEngine.SceneManagement;
 
 namespace Code.Infrastructure
 {
-    public class MainMenuState : IState
+    public sealed class MainMenuState : IState
     {
-        private GameStateMachine _context;
+        private readonly GameStateMachine _context;
 
         public MainMenuState(GameStateMachine context)
         {

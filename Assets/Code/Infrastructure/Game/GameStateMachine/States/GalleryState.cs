@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 namespace Code.Infrastructure
 {
-    public class GalleryState : IState
+    public sealed class GalleryState : IState
     {
         private readonly GameStateMachine _context;
 
