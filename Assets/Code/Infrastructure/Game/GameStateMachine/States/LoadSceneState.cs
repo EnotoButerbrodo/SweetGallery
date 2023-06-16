@@ -58,15 +58,16 @@ namespace Code.Infrastructure
             }
 
             loadOperation.allowSceneActivation = true;
+            
             yield return new WaitForSeconds(0.25f);
+            
             _loadingScreen.Hide();
             
             loadSceneArgs.OnLoadCallback?.Invoke();
-            Debug.Log("Callback " + loadSceneArgs.SceneName);
 
-            
-            
-            
+
+
+
         }
         
     }

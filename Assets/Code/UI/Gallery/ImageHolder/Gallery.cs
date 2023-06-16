@@ -1,19 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace Code.UI.Gallery
 {
     public class Gallery : MonoBehaviour
     {
         [SerializeField] private int _startImagesCount = 4;
-        [SerializeField] private ImageHolderFactory _factory;
+        [SerializeField] private Transform _content;
+        
+        [Inject] private IImageHolderFactory _factory;
         
         private List<IImageHolder> _holders = new List<IImageHolder>();
 
         private void Awake()
         {
-            Debug.Log("Gallery");
             CreateStartHolders();
         }
 
@@ -28,6 +29,8 @@ namespace Code.UI.Gallery
         private void CreateImageHolder()
         {
             var newHolder = _factory.Get();
+            newHolder.SetParent(_content);
+            
             _holders.Add(newHolder);
         }
         
