@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Code.UI.Gallery
+namespace Code.UI
 {
     public class ImageHolderFactory : MonoBehaviour, IImageHolderFactory
     {

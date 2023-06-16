@@ -1,4 +1,4 @@
-﻿namespace Code.UI.Gallery
+﻿namespace Code.UI
 {
     public interface IImageHolderFactory
     {

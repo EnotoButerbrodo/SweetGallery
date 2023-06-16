@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Code.UI.Gallery
+namespace Code.UI
 {
     public class ImageHolder : MonoBehaviour, IImageHolder
     {
@@ -12,7 +12,12 @@ namespace Code.UI.Gallery
 
         public event Action<IImageHolder> Selected;
         public event Action<IImageHolder> Deselected;
-        
+
+        public void Deselect()
+        {
+            _border.enabled = false;
+        }
+
         public void SetImage(Sprite sprite)
         {
             _image.sprite = sprite;
@@ -35,7 +40,8 @@ namespace Code.UI.Gallery
 
         private void OnSelectButton()
         {
-            _border.enabled = !_border.enabled;
+            _border.enabled = true;
+            Selected?.Invoke(this);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Code.UI.Gallery;
+﻿using Code.Services;
+using Code.UI;
 using UnityEngine;
 using Zenject;
 
@@ -10,6 +11,16 @@ namespace Code.Infrastructure.Installers
         public override void InstallBindings()
         {
             BindImageHoldersFactory();
+            BindImageDownloader();
+        }
+
+        private void BindImageDownloader()
+        {
+            var imageDownloader = new ImageDownloader(Container.Resolve<ICoroutineRunner>());
+            Container
+                .Bind<ImageDownloader>()
+                .FromInstance(imageDownloader)
+                .AsSingle();
         }
 
         private void BindImageHoldersFactory()

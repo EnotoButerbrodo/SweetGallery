@@ -2,7 +2,7 @@
 using UnityEngine;
 using Zenject;
 
-namespace Code.UI.Gallery
+namespace Code.UI
 {
     public class Gallery : MonoBehaviour
     {
@@ -10,9 +10,12 @@ namespace Code.UI.Gallery
         [SerializeField] private Transform _content;
         
         [Inject] private IImageHolderFactory _factory;
-        
-        private List<IImageHolder> _holders = new List<IImageHolder>();
+        [Inject] private ImageDownloader _imageDownloader;
 
+        private List<IImageHolder> _holders = new List<IImageHolder>();
+        
+        private IImageHolder _selectedHolder;
+        
         private void Awake()
         {
             CreateStartHolders();
@@ -30,9 +33,18 @@ namespace Code.UI.Gallery
         {
             var newHolder = _factory.Get();
             newHolder.SetParent(_content);
+            newHolder.Selected += UpdateSelectedHolder;
             
+            _imageDownloader.GetNextImage((sprite) => newHolder.SetImage(sprite));
             _holders.Add(newHolder);
         }
-        
+
+        private void UpdateSelectedHolder(IImageHolder holder)
+        {
+            if(_selectedHolder != null)
+                _selectedHolder.Deselect();
+            
+            _selectedHolder = holder;
+        }
     }
 }
