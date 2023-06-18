@@ -34,6 +34,11 @@ namespace Code.UI
             _holders[imageNumber].SetImage(image);
         }
 
+        public void ScrollToBegin()
+        {
+            _scrollRect.verticalScrollbar.value = 1;
+        }
+
         private void UpdateSelectedHolder(IImageHolder holder)
         {
             if(_selectedHolder != null)

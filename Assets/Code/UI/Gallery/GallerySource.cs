@@ -7,12 +7,11 @@ namespace Code.UI
     {
         [SerializeField] private Gallery _gallery;
         [SerializeField] private int _startImagesCount = 4;
-        
+        [SerializeField] private int _loadingsImagesCount = 4;
+        [SerializeField] private float _scrollPercentToLoad = 0.25f;
         [Inject] private ImageDownloader _imageDownloader;
         
-        private int _currentImage = 1;
-
-        private void Awake()
+        private void Start()
         {
             CreateStartHolders();
             _gallery.OnScroll += OnGalleryScrolled;
@@ -20,25 +19,23 @@ namespace Code.UI
 
         private void OnGalleryScrolled(Vector2 scrollValue)
         {
-            if(_gallery.LastImageIndex > 64)
-                return;
-            
-            if (scrollValue.y <= 0.25f)
+            if (scrollValue.y <= _scrollPercentToLoad)
             {
-                LoadImage();
-                LoadImage();
-                LoadImage();
-                LoadImage();
+                for (int i = 0; i < _loadingsImagesCount; i++)
+                {
+                    LoadImage();
+                }
             }
         }
-
-
+        
         private void CreateStartHolders()
         {
             for (int i = 0; i < _startImagesCount; i++)
             {
                 LoadImage();
             }
+            
+            _gallery.ScrollToBegin();
         }
         
         [ContextMenu("LoadImage")]

@@ -17,8 +17,7 @@ namespace Code.UI
             _coroutineRunner = coroutineRunner;
             _urlBuilder = new ImageURLBuilder();
         }
-        
-        
+
         public void TryGetImage(int imageNumber, ImageDownloadResult resultCallback)
         {
             _coroutineRunner.StartCoroutine(GetTexture(imageNumber, resultCallback));
@@ -41,7 +40,6 @@ namespace Code.UI
                 Texture2D texture = DownloadHandlerTexture.GetContent(getTextureRequest);
 
                 Vector2 spriteSize = new Vector2(texture.width, texture.height);
-
                 Sprite sprite = Sprite.Create(texture
                     , rect: new Rect(Vector2.zero, spriteSize)
                     , pivot: new Vector2(0.5f, 0.5f));

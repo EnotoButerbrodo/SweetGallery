@@ -487,6 +487,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5453944696338040941, guid: dabc58a79e7c55041a24dd994baecfb0, type: 3}
+      propertyPath: _loadingsImagesCount
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5453944696338040941, guid: dabc58a79e7c55041a24dd994baecfb0, type: 3}
+      propertyPath: _scrollPercentToLoad
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 6106412471053149948, guid: dabc58a79e7c55041a24dd994baecfb0, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -536,35 +544,15 @@ PrefabInstance:
       value: Gallery
       objectReference: {fileID: 0}
     - target: {fileID: 6106412471588867713, guid: dabc58a79e7c55041a24dd994baecfb0, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106412471588867713, guid: dabc58a79e7c55041a24dd994baecfb0, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106412471588867713, guid: dabc58a79e7c55041a24dd994baecfb0, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6106412471588867713, guid: dabc58a79e7c55041a24dd994baecfb0, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106412471588867713, guid: dabc58a79e7c55041a24dd994baecfb0, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 573.53827
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106412471588867713, guid: dabc58a79e7c55041a24dd994baecfb0, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 859.2499
+      value: -0.000061035156
       objectReference: {fileID: 0}
-    - target: {fileID: 6106412471588867775, guid: dabc58a79e7c55041a24dd994baecfb0, type: 3}
-      propertyPath: m_VerticalFit
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106412471588867775, guid: dabc58a79e7c55041a24dd994baecfb0, type: 3}
-      propertyPath: m_HorizontalFit
+    - target: {fileID: 6106412472037441856, guid: dabc58a79e7c55041a24dd994baecfb0, type: 3}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6106412472184272147, guid: dabc58a79e7c55041a24dd994baecfb0, type: 3}

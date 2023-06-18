@@ -7,6 +7,7 @@ namespace Code.Infrastructure
     {
         private void Awake()
         {
+            Debug.Log("InitiaalSceneHandler");
             if (!IsGameInitiated()) 
                 LoadInitialScene();
         }
