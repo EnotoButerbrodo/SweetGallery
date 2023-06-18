@@ -493,7 +493,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5453944696338040941, guid: dabc58a79e7c55041a24dd994baecfb0, type: 3}
       propertyPath: _scrollPercentToLoad
-      value: 0.05
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 6106412471053149948, guid: dabc58a79e7c55041a24dd994baecfb0, type: 3}
       propertyPath: m_RootOrder

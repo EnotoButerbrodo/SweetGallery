@@ -10,29 +10,19 @@ namespace Code.UI
     {
         [SerializeField] private Transform _content;
         [SerializeField] private ScrollRect _scrollRect;
-        [Inject] private IImageHolderFactory _factory;
-
+        
         public event Action<Vector2> OnScroll;
-        
-        public int LastImageIndex => _holders.Count;
-        
+
         private List<IImageHolder> _holders = new List<IImageHolder>();
         private IImageHolder _selectedHolder;
         
-        public void AddHolder()
+        public void AddHolder(IImageHolder holder)
         {
-            var imageHolder = _factory.Get();
-            imageHolder.Selected += UpdateSelectedHolder;
-            imageHolder.SetParent(_content);
-            _holders.Add(imageHolder);
-
-            _scrollRect.verticalScrollbar.SetValueWithoutNotify(0.1f);
+            holder.Selected += UpdateSelectedHolder;
+            holder.SetParent(_content);
+            _holders.Add(holder);
         }
-
-        public void SetHolderImage(int imageNumber, Sprite image)
-        {
-            _holders[imageNumber].SetImage(image);
-        }
+        
 
         public void ScrollToBegin()
         {

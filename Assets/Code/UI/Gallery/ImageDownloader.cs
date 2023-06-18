@@ -9,31 +9,28 @@ namespace Code.UI
 {
     public class ImageDownloader
     {
-        private readonly IImageURLBuilder _urlBuilder;
+
         private readonly ICoroutineRunner _coroutineRunner;
 
         public ImageDownloader(ICoroutineRunner coroutineRunner)
         {
             _coroutineRunner = coroutineRunner;
-            _urlBuilder = new ImageURLBuilder();
         }
 
-        public void TryGetImage(int imageNumber, ImageDownloadResult resultCallback)
+        public void TryGetImage(string url, ImageDownloadResult resultCallback)
         {
-            _coroutineRunner.StartCoroutine(GetTexture(imageNumber, resultCallback));
+            _coroutineRunner.StartCoroutine(GetTexture(url, resultCallback));
         }
         
-        private IEnumerator GetTexture(int imageNumber, ImageDownloadResult resultCallback)
+        private IEnumerator GetTexture(string url, ImageDownloadResult resultCallback)
         {
-            string url = _urlBuilder.GetURLForImageNumber(imageNumber);
-
             using (UnityWebRequest getTextureRequest = UnityWebRequestTexture.GetTexture(url))
             {
                 yield return getTextureRequest.SendWebRequest();
 
                 if (getTextureRequest.result != UnityWebRequest.Result.Success)
                 {
-                    resultCallback.Invoke(false, imageNumber, null);
+                    resultCallback.Invoke(false, url, null);
                     yield break;
                 }
 
@@ -44,7 +41,7 @@ namespace Code.UI
                     , rect: new Rect(Vector2.zero, spriteSize)
                     , pivot: new Vector2(0.5f, 0.5f));
                 
-                resultCallback.Invoke(true, imageNumber, sprite);
+                resultCallback.Invoke(true, url, sprite);
             }
         } 
 

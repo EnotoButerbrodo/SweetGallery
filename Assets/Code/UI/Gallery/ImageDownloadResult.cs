@@ -2,5 +2,5 @@
 
 namespace Code.UI
 {
-    public delegate void ImageDownloadResult(bool isAvailable, int imageNumber, Sprite image);
+    public delegate void ImageDownloadResult(bool isAvailable, string url, Sprite image);
 }

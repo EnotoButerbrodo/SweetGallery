@@ -2,8 +2,13 @@
 {
     public class ImageURLBuilder : IImageURLBuilder
     {
-        private readonly string _imagesServerURL = @"http://data.ikppbb.com/test-task-unity-data/pics";
-        
+        private readonly string _imagesServerURL;
+
+        public ImageURLBuilder(string imagesServerURL)
+        {
+            _imagesServerURL = imagesServerURL;
+        }
+
         public string GetURLForImageNumber(int number)
             => $"{_imagesServerURL}//{number}.jpg";
 
