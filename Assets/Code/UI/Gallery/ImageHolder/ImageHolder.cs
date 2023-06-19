@@ -23,6 +23,10 @@ namespace Code.UI
             _image.sprite = sprite;
         }
 
+        public Sprite GetImage()
+            => _image.sprite;
+        
+
         public void SetParent(Transform parent)
         {
             transform.SetParent(parent, false);

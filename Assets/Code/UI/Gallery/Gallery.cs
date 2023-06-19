@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Code.Infrastructure;
+using Code.Services.UIService;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -10,7 +12,8 @@ namespace Code.UI
     {
         [SerializeField] private Transform _content;
         [SerializeField] private ScrollRect _scrollRect;
-        
+
+        [Inject] private Game _game;
         public event Action<Vector2> OnScroll;
 
         private List<IImageHolder> _holders = new List<IImageHolder>();
@@ -18,7 +21,7 @@ namespace Code.UI
         
         public void AddHolder(IImageHolder holder)
         {
-            holder.Selected += UpdateSelectedHolder;
+            holder.Selected += OnHolderSelected;
             holder.SetParent(_content);
             _holders.Add(holder);
         }
@@ -29,12 +32,18 @@ namespace Code.UI
             _scrollRect.verticalScrollbar.value = 1;
         }
 
-        private void UpdateSelectedHolder(IImageHolder holder)
+        private void OnHolderSelected(IImageHolder holder)
         {
             if(_selectedHolder != null)
                 _selectedHolder.Deselect();
             
             _selectedHolder = holder;
+
+            if (holder.GetImage() != null)
+            {
+                _game.StateMachine.Enter<ImageViewState, Sprite>(holder.GetImage());    
+            }
+            
         }
 
         private void OnEnable()

@@ -22,7 +22,8 @@ namespace Code.Infrastructure
                 [typeof(GameInitialState)] = _factory.GetInitialState(context: this),
                 [typeof(LoadSceneState)] = _factory.GetLoadSceneState(this),
                 [typeof(MainMenuState)] = _factory.GetMainMenuState(this),
-                [typeof(GalleryState)] = _factory.GetGalleryState(this)
+                [typeof(GalleryState)] = _factory.GetGalleryState(this),
+                [typeof(ImageViewState)] = _factory.GetImageViewState(this)
             };
         }
     }

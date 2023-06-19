@@ -1,4 +1,5 @@
 ﻿using EnotoButerbrodo.StateMachine;
+using UnityEngine;
 
 namespace Code.Infrastructure
 {
@@ -9,5 +10,6 @@ namespace Code.Infrastructure
 
         public IState GetMainMenuState(GameStateMachine context);
         public IState GetGalleryState(GameStateMachine context);
+        IPayloadedState<Sprite> GetImageViewState(GameStateMachine gameStateMachine);
     }
 }

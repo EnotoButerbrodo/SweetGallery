@@ -3,5 +3,6 @@
     public interface IUIFactory
     {
         public LoadingScreen GetLoadingScreen();
+        public ImagePreviewScreen GetImagePreviewScreen();
     }
 }

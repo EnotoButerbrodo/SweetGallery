@@ -1,6 +1,8 @@
 ﻿using Code.Services;
 using Code.Services.UIService;
+using Code.UI;
 using EnotoButerbrodo.StateMachine;
+using UnityEngine;
 using Zenject;
 
 namespace Code.Infrastructure
@@ -28,5 +30,9 @@ namespace Code.Infrastructure
 
         public IState GetGalleryState(GameStateMachine context)
             => new GalleryState(context);
+
+        public IPayloadedState<Sprite> GetImageViewState(GameStateMachine context)
+            => new ImageViewState(context
+                , _container.Resolve<IUIFactory>());
     }
 }
