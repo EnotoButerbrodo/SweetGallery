@@ -1,9 +1,22 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
 namespace Code.UI
 {
+    public class ImageLoadingArgs
+    {
+        public ImageLoadingArgs(IImageHolder targetHolder
+            , Coroutine loadingCoroutine)
+        {
+            _targetHolder = targetHolder;
+            _loadingCoroutine = loadingCoroutine;
+        }
+
+        public IImageHolder _targetHolder;
+        public Coroutine _loadingCoroutine;
+    }
     public class GallerySource : MonoBehaviour
     {
         [SerializeField] private Gallery _gallery;
@@ -20,6 +33,7 @@ namespace Code.UI
         private IImageURLBuilder _urlBuilder;
 
         private Dictionary<string, IImageHolder> _loadingHolders = new();
+        private List<Coroutine> _loadingCoroutines;
 
         private int _currentImage = 1;
         
@@ -63,7 +77,13 @@ namespace Code.UI
             
             _loadingHolders.Add(imageURL, holder);
             _gallery.AddHolder(holder);
+            
             _imageDownloader.TryGetImage(imageURL, FitImageHolder);
+        }
+
+        private void OnDisable()
+        {
+            _imageDownloader.CancelDownloads();
         }
 
         private void FitImageHolder(bool isImageAvailable
