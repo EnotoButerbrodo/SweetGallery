@@ -23,7 +23,7 @@ namespace Code.UI
             _image.sprite = sprite;
         }
 
-        public Sprite GetImage()
+        public Sprite GetImage() 
             => _image.sprite;
         
 

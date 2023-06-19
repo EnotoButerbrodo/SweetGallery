@@ -1,4 +1,5 @@
 ﻿using Code.Services;
+using Code.Services.ImagePreviewService;
 using Code.Services.UIService;
 using Code.UI;
 using EnotoButerbrodo.StateMachine;
@@ -33,6 +34,6 @@ namespace Code.Infrastructure
 
         public IPayloadedState<Sprite> GetImageViewState(GameStateMachine context)
             => new ImageViewState(context
-                , _container.Resolve<IUIFactory>());
+                , _container.Resolve<IImagePreviewService>());
     }
 }

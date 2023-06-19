@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Code.Infrastructure;
+using Code.Services.ImagePreviewService;
 using Code.Services.UIService;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,6 +15,7 @@ namespace Code.UI
         [SerializeField] private ScrollRect _scrollRect;
 
         [Inject] private Game _game;
+
         public event Action<Vector2> OnScroll;
 
         private List<IImageHolder> _holders = new List<IImageHolder>();
@@ -34,16 +36,18 @@ namespace Code.UI
 
         private void OnHolderSelected(IImageHolder holder)
         {
-            if(_selectedHolder != null)
+            if (_selectedHolder != null)
                 _selectedHolder.Deselect();
-            
+
             _selectedHolder = holder;
 
-            if (holder.GetImage() != null)
-            {
-                _game.StateMachine.Enter<ImageViewState, Sprite>(holder.GetImage());    
-            }
-            
+            Sprite sprite = holder.GetImage();
+            if (sprite == null)
+                return;
+
+            _game.StateMachine.Enter<ImageViewState, Sprite>(sprite);
+
+
         }
 
         private void OnEnable()

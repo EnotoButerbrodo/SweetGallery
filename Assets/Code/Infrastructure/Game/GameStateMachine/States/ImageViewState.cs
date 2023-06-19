@@ -1,4 +1,5 @@
-﻿using Code.Services.UIService;
+﻿using Code.Services.ImagePreviewService;
+using Code.Services.UIService;
 using Code.UI;
 using EnotoButerbrodo.StateMachine;
 using UnityEngine;
@@ -9,14 +10,13 @@ namespace Code.Infrastructure
     public sealed class ImageViewState : IPayloadedState<Sprite>
     {
         private readonly GameStateMachine _context;
-        private readonly IUIFactory _uiFactory;
+        private readonly IImagePreviewService _imagePreviewService;
+        
 
-        private ImagePreviewScreen _screen;
-
-        public ImageViewState(GameStateMachine context, IUIFactory uiFactory)
+        public ImageViewState(GameStateMachine context, IImagePreviewService imagePreviewService)
         {
             _context = context;
-            _uiFactory = uiFactory;
+            _imagePreviewService = imagePreviewService;
         }
 
         public void Enter(Sprite payload)
@@ -26,10 +26,9 @@ namespace Code.Infrastructure
                 LoadImageViewScene(payload);
                 return;
             }
-            _screen = _uiFactory.GetImagePreviewScreen();
-            _screen.SetImage(payload);
-            _screen.Show();
-            
+
+            _imagePreviewService.ImageToPreview = payload;
+
         }
 
         private void LoadImageViewScene(Sprite payload)
@@ -46,7 +45,6 @@ namespace Code.Infrastructure
 
         public void Exit()
         {
-            _screen?.Hide();
         }
     }
 }

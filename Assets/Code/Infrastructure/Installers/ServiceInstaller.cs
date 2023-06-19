@@ -1,4 +1,5 @@
 ﻿using Code.Services;
+using Code.Services.ImagePreviewService;
 using Zenject;
 
 namespace Code.Infrastructure.Installers
@@ -9,6 +10,16 @@ namespace Code.Infrastructure.Installers
         public override void InstallBindings()
         {
             BindCoroutineRunner();
+            BindImagePreviewService();
+        }
+
+        private void BindImagePreviewService()
+        {
+            Container
+                .Bind<IImagePreviewService>()
+                .To<ImagePreviewService>()
+                .FromNew()
+                .AsSingle();
         }
 
         private void BindCoroutineRunner()
