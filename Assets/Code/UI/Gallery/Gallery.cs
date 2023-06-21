@@ -43,7 +43,7 @@ namespace Code.UI
             if (sprite == null)
                 return;
 
-            _game.StateMachine.Enter<ImageViewState, Sprite>(sprite);
+            _game.StateMachine.Enter<ImagePreviewState, Sprite>(sprite);
 
 
         }

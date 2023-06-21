@@ -33,8 +33,8 @@ namespace Code.Infrastructure
         public IState GetGalleryState(GameStateMachine context)
             => new GalleryState(context);
 
-        public IPayloadedState<Sprite> GetImageViewState(GameStateMachine context)
-            => new ImageViewState(context
+        public IPayloadedState<Sprite> GetImagePreviewState(GameStateMachine context)
+            => new ImagePreviewState(context
                 , _container.Resolve<IImagePreviewService>());
     }
 }
