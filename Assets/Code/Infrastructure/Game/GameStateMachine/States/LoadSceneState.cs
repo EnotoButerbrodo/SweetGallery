@@ -37,13 +37,15 @@ namespace Code.Infrastructure
 
         private IEnumerator LoadScene(LoadSceneArgs loadSceneArgs)
         {
-            if (SceneManager.GetActiveScene().name == loadSceneArgs.SceneName)
+            bool alreadyInTargetScene = SceneManager.GetActiveScene().name == loadSceneArgs.SceneName;
+            
+            if (alreadyInTargetScene)
             {
                 loadSceneArgs.OnSceneChanged?.Invoke();
                 yield break; 
             }
             
-            _loadingScreen.SetProgressPercent(0);
+            _loadingScreen.SetProgressPercent(0f);
             _loadingScreen.Show();
             
             AsyncOperation loadOperation = SceneManager.LoadSceneAsync(loadSceneArgs.SceneName);
@@ -61,14 +63,13 @@ namespace Code.Infrastructure
                 
                 yield return null;
             }
-            _loadingScreen.SetProgressPercent(1);
+            
+            _loadingScreen.SetProgressPercent(1f);
             yield return new WaitForSeconds(PostLoadDelay);
 
             _loadingScreen.Hide();
+            
             loadSceneArgs.OnLoadComplete?.Invoke();
-            
-            
         }
-        
     }
 }

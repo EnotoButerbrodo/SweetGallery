@@ -20,7 +20,6 @@ namespace Code.Infrastructure
 
         public void Exit()
         {
-            
         }
         
         private bool InGalleryScene() 

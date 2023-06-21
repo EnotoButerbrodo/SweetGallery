@@ -9,7 +9,6 @@ namespace Code.Infrastructure
 
         private void Start()
         {
-            Debug.Log("Bootsrap");
             _game.StateMachine.Enter<GameInitialState>();
             DontDestroyOnLoad(this);
         }

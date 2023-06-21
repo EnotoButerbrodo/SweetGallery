@@ -6,7 +6,6 @@ namespace Code.UI
     public interface IImageHolder
     {
         public event Action<IImageHolder> Selected;
-        
         public void Deselect();
         public void SetImage(Sprite sprite);
         public Sprite GetImage();

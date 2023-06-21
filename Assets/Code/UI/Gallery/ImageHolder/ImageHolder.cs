@@ -11,7 +11,6 @@ namespace Code.UI
         [SerializeField] private Button _button;
 
         public event Action<IImageHolder> Selected;
-        public event Action<IImageHolder> Deselected;
 
         public void Deselect()
         {

@@ -25,7 +25,6 @@ namespace Code.UI
             holder.SetParent(_content);
             _holders.Add(holder);
         }
-        
 
         public void ScrollToBegin()
         {
@@ -44,16 +43,19 @@ namespace Code.UI
                 return;
 
             _game.StateMachine.Enter<ImagePreviewState, Sprite>(sprite);
-
-
         }
+
+        private void OnScrolling(Vector2 scrollingValue) 
+            => OnScroll?.Invoke(scrollingValue);
 
         private void OnEnable()
         {
             _scrollRect.onValueChanged.AddListener(OnScrolling);
         }
 
-        private void OnScrolling(Vector2 scrollingValue) 
-            => OnScroll?.Invoke(scrollingValue);
+        private void OnDisable()
+        {
+            _scrollRect.onValueChanged.RemoveListener(OnScrolling);
+        }
     }
 }

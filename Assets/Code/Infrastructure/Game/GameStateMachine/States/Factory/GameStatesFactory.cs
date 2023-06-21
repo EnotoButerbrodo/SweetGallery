@@ -1,7 +1,6 @@
 ﻿using Code.Services;
 using Code.Services.ImagePreviewService;
 using Code.Services.UIService;
-using Code.UI;
 using EnotoButerbrodo.StateMachine;
 using UnityEngine;
 using Zenject;
@@ -20,7 +19,6 @@ namespace Code.Infrastructure
         public IState GetInitialState(GameStateMachine context)
             => new GameInitialState(context
             , _container.Resolve<IInputService>());
-
 
         public IPayloadedState<LoadSceneArgs> GetLoadSceneState(GameStateMachine context)
             => new LoadSceneState(

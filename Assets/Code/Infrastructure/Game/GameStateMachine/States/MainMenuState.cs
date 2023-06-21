@@ -17,6 +17,10 @@ namespace Code.Infrastructure
             if(!InMainMenuScene())
                 LoadMainMenuScene();
         }
+        
+        public void Exit()
+        {
+        }
 
         private bool InMainMenuScene() 
             => SceneManager.GetActiveScene().name == SceneNames.MainMenuScene;
@@ -25,8 +29,6 @@ namespace Code.Infrastructure
             _context.Enter<LoadSceneState, LoadSceneArgs>(
                 new LoadSceneArgs(SceneNames.MainMenuScene));
 
-        public void Exit()
-        {
-        }
+       
     }
 }

@@ -23,24 +23,20 @@ namespace Code.Infrastructure
             EnableInput();
             LoadMainMenu();
         }
-
-        private void EnableInput()
-        {
-            _inputService.Enable();
-        }
-
-        private void SetPortaitOrientation()
-        {
-            Screen.orientation = ScreenOrientation.Portrait;
-        }
-
-        private void LoadMainMenu()
-        {
-            _context.Enter<MainMenuState>();
-        }
-
+        
         public void Exit()
         {
         }
+
+        private void EnableInput() 
+            => _inputService.Enable();
+
+        private void SetPortaitOrientation() 
+            => Screen.orientation = ScreenOrientation.Portrait;
+
+        private void LoadMainMenu() 
+            => _context.Enter<MainMenuState>();
+
+        
     }
 }

@@ -8,6 +8,7 @@ namespace Code.Infrastructure.Installers
     public class GalleryInstaller : MonoInstaller
     {
         [SerializeField] private ImageHolderFactory _factory;
+        
         public override void InstallBindings()
         {
             BindImageHoldersFactory();
@@ -30,7 +31,6 @@ namespace Code.Infrastructure.Installers
                 .To<ImageHolderFactory>()
                 .FromComponentsInNewPrefab(_factory)
                 .AsSingle();
-
         }
     }
 }
