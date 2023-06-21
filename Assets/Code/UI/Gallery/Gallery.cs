@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Code.Infrastructure;
-using Code.Services.ImagePreviewService;
-using Code.Services.UIService;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;

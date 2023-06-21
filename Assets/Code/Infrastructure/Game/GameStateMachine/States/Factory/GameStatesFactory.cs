@@ -18,7 +18,8 @@ namespace Code.Infrastructure
         }
 
         public IState GetInitialState(GameStateMachine context)
-            => new GameInitialState(context);
+            => new GameInitialState(context
+            , _container.Resolve<IInputService>());
 
 
         public IPayloadedState<LoadSceneArgs> GetLoadSceneState(GameStateMachine context)
