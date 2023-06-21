@@ -1,0 +1,34 @@
+{
+    "name": "ControllScheme",
+    "maps": [
+        {
+            "name": "UI",
+            "id": "3bb0172c-1320-41ad-adfb-a0b9d2169d48",
+            "actions": [
+                {
+                    "name": "Back",
+                    "type": "Button",
+                    "id": "f8accf9c-21d0-4047-8e8a-e621d6e8a034",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "5ab29928-5705-470b-b777-5b85d3f1ae72",
+                    "path": "*/{Cancel}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Back",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

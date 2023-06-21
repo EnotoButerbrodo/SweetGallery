@@ -6,11 +6,11 @@ namespace Code.Infrastructure.Installers
 {
     public class ServiceInstaller : MonoInstaller
     {
-        
         public override void InstallBindings()
         {
             BindCoroutineRunner();
             BindImagePreviewService();
+            BindInputService();
         }
 
         private void BindImagePreviewService()
@@ -36,6 +36,13 @@ namespace Code.Infrastructure.Installers
             DontDestroyOnLoad(coroutineRunner);
         }
 
-        
+        private void BindInputService()
+        {
+            Container
+                .Bind<IInputService>()
+                .To<InputService>()
+                .FromNew()
+                .AsSingle();
+        }
     }
 }
